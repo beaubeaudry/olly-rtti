@@ -37,14 +37,14 @@ extc int _export cdecl  ODBG2_Pluginquery(int ollydbgversion, ulong *features,
 };
 
 // One-time initialization
-extc int __cdecl ODBG2_Plugininit(void) {
-
+extc int __cdecl ODBG2_Plugininit(void) 
+{
     return 0;
 }
 
 // New target started or restarted
 extc void _export cdecl ODBG2_Pluginreset(void) 
-{  
+{
 };
 
 // Olly exiting
