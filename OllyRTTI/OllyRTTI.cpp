@@ -7,10 +7,43 @@
 
 HINSTANCE pluginHandle;
 
+
+// Dump -> Check RTTI
+static int CheckRTTIDump(t_table *pt, wchar_t *name, ulong index, int mode)
+{
+	if (mode==MENU_VERIFY)
+		return MENU_NORMAL;
+	else if (mode==MENU_EXECUTE)
+	{	
+		Addtolist(0, 1, L"Dump -> Check RTTI");
+		
+		return MENU_NOREDRAW;
+	}
+	return MENU_ABSENT;
+}
+
+// Registers -> Check RTTI
+static int CheckRTTIRegisters(t_table *pt, wchar_t *name, ulong index, int mode)
+{
+	if (mode==MENU_VERIFY)
+		return MENU_NORMAL;
+	else if (mode==MENU_EXECUTE)
+	{	
+		Addtolist(0, 1, L"Registers -> Check RTTI");
+
+		return MENU_NOREDRAW;
+	}
+	return MENU_ABSENT;
+}
+
 // Menu setup
 extc _export t_menu * cdecl ODBG2_Pluginmenu(wchar_t *type)  
 {
-  return NULL;
+	if (wcscmp(type, PWM_DUMP)==0)
+		return DumpMenu;
+	else if (wcscmp(type, PWM_REGISTERS)==0)
+		return RegistersMenu;
+	return NULL;
 };
 
 // Module entry
